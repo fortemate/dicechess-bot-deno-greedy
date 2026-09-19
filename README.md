@@ -1,3 +1,19 @@
+> [!IMPORTANT]
+> **Archived — this bot moved on 2026-09-19.**
+>
+> `cloudflare/greedy` is now served by
+> [fortemate/dicechess-bots-deno](https://github.com/fortemate/dicechess-bots-deno) at the path
+> `/greedy`, together with the other Deno anchors. The identity, its rating and its game history
+> were never re-created: re-registering a webhook replaces only the URL and the secret.
+>
+> The move was for quota, not for code. Deno Deploy bills Memory Time as provisioned memory for
+> every second an *application* is loaded in memory, regardless of how many identities it serves,
+> so one application per bot doubled the bill for nothing. See
+> [the journal entry](https://github.com/fortemate/fortemate-internal/blob/main/content/journal/2026-09-19-greedy-migrated-to-deno-deploy.md).
+>
+> This repository is kept read-only because merged journal entries link to it. Nothing here is
+> deployed any more.
+
 # Dice Chess Bot — Deno Deploy (Fixed Rating Anchor, greedy)
 
 [![CI](https://github.com/fortemate/dicechess-bot-deno-greedy/actions/workflows/ci.yml/badge.svg)](https://github.com/fortemate/dicechess-bot-deno-greedy/actions/workflows/ci.yml)
