@@ -22,6 +22,14 @@
 - **Check**: `deno task check` (`deno check`, `deno fmt --check`, `deno lint`).
 - **Dev**: `deno task dev` (serves on :8000; set `DICECHESS_WEBHOOK_SECRET` first).
 - **Deploy**: pushed to `main`, deployed by Deno Deploy from this repository.
+- **Runtime memory limit**: 512 MiB, set in the Deno Deploy dashboard under App Config — deliberately NOT in
+  `deno.json`. Deno Deploy's Memory Time meter bills the _provisioned_ memory for every second the app is
+  loaded in memory, not what it uses and not CPU time, so the 768 MiB default would consume most of the free
+  plan's 350 GiB-h on residency alone (350 / 0.75 = 466 app-hours against 730 in a month), and exceeding it
+  pauses the app until the next billing cycle. 512 MiB is the platform minimum; the same engine ran inside
+  Cloudflare's 128 MB isolate. It is not in source because the accepted format for
+  `deploy.runtime.memory_limit` is undocumented and a source config that parses makes the dashboard read-only
+  — a bad trap to spring on a live bot.
 
 ## Publication boundary
 
