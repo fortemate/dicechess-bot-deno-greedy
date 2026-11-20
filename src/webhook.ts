@@ -31,7 +31,12 @@ export async function sign(secret: string, timestamp: number, body: string): Pro
 function constantTimeEqual(a: string, b: string): boolean {
   if (a.length !== b.length) return false;
   let diff = 0;
-  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  let i = 0;
+  for (; i + 1 < a.length; i += 2) {
+    diff |= a.codePointAt(i)! ^ b.codePointAt(i)!;
+    diff |= a.codePointAt(i + 1)! ^ b.codePointAt(i + 1)!;
+  }
+  if (i < a.length) diff |= a.codePointAt(i)! ^ b.codePointAt(i)!;
   return diff === 0;
 }
 
